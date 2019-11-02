@@ -76,6 +76,7 @@ def receive_message():
                         print('REMAIN SILENT!')
                         quickreply_payload = message['message']['quick_reply']['payload']
                         #send_message(recipient_id, curr_payload)
+                        print(quickreply_payload)
                         send_message(recipient_id, quickreply_payload)
                         #if quickreply_payload == 'Pick who wins':
                         #    send_quick_reply(recipient_id, 'Who will win?', curr_payload.split(' @ ')[0], curr_payload.split(' @ ')[1])
