@@ -19,8 +19,8 @@ class NotificationType(Enum):
     silent_push = "SILENT_PUSH"
     no_push = "NO_PUSH"
 
-def send_quick_reply(self, recipient_id, text, option1, option2, notification_type=NotificationType.regular):
-        return self.send_recipient(recipient_id, {"message": {"text": text, "quick_replies": [{"content_type": "text", "title": option1, "payload": option1}, {"content_type": "text", "title": option2, "payload": option2}]}}
+def send_quick_reply(self, recipient_id, text, option1, option2, pl, notification_type=NotificationType.regular):
+        return self.send_recipient(recipient_id, {"message": {"text": text, "quick_replies": [{"content_type": "text", "title": option1, "payload": option1+'|'+pl}, {"content_type": "text", "title": option2, "payload": option2+'|'+pl}]}}
         , notification_type)
 
 def send_recipient(self, recipient_id, payload, notification_type=NotificationType.regular):
@@ -75,7 +75,7 @@ def receive_message():
                     elif type_=='silence':
                         print('REMAIN SILENT!')
                         quickreply_payload = message['message']['quick_reply']['payload']
-                        print(curr_payload)
+                        #print(curr_payload)
                         #send_message(recipient_id, curr_payload)
                         print(quickreply_payload)
                         send_message(recipient_id, quickreply_payload)
@@ -95,12 +95,12 @@ def receive_message():
             elif message.get('postback'):
                 if message['postback']['title'] == 'Play':
                     recipient_id = messaging[0]['sender']['id']
-                    send_message(recipient_id, message['postback']['payload'])
                     curr_payload = message['postback']['payload']
+                    send_message(recipient_id, curr_payload)
                     print(curr_payload)
 
 
-                    send_quick_reply(recipient_id,'What type of betting?','Pick who wins','Over Under')
+                    send_quick_reply(recipient_id,'What type of betting?','Pick who wins','Over Under',curr_payload)
 
             # elif message.get('quick_reply'):
             #     send_message(recipient_id,'in_quick-reply')
@@ -190,8 +190,8 @@ def send_carousel_message(recipient_id, elements):
     bot.send_generic_message(recipient_id, elements)
     return "success"
 
-def send_quick_reply(recipient_id,text,option1,option2):
-    bot.send_quick_reply(recipient_id,text,option1,option2)
+def send_quick_reply(recipient_id,text,option1,option2,pl):
+    bot.send_quick_reply(recipient_id,text,option1,option2,pl)
 
 if __name__ == "__main__":
     app.run()
