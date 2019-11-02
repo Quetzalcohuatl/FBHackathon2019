@@ -34,7 +34,8 @@ def send_recipient(self, recipient_id, payload, notification_type=NotificationTy
 Bot.send_quick_reply = send_quick_reply
 Bot.send_recipient = send_recipient
 
-
+curr_payload=''
+quickreply_payload = ''
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -70,9 +71,12 @@ def receive_message():
                     elif type_ == 'carousel':
                         send_carousel_message(recipient_id,response_sent_text)
 
+                    # Remain silent but capture the payload
                     elif type_=='silence':
                         print('REMAIN SILENT!')
-                        continue
+                        quickreply_payload = message['quick_reply']['payload']
+                        send_message(recipient_id, quickreply_payload)
+
 
                     # The default
                     else:
@@ -87,11 +91,20 @@ def receive_message():
                 if message['postback']['title'] == 'Play':
                     recipient_id = messaging[0]['sender']['id']
                     send_message(recipient_id, message['postback']['payload'])
+                    curr_payload = message['postback']['payload']
+
 
                     send_quick_reply(recipient_id,'What type of betting?','Pick who wins','Over Under')
 
-            #elif message.get('quick_reply'):
-            #    if message['quick_reply']['payload'][0] == 'Pick who wins':
+            elif message.get('quick_reply'):
+                send_message(recipient_id,'in_quick-reply')
+                if ' @ ' in curr_payload:
+                    send_message(recipient_id,'@')
+                    team1 = curr_payload.split(' @ ')[0]
+                    team2 = curr_payload.split(' @ ')[1]
+
+                    if quickreply_payload == 'Pick who wins':
+                        send_quick_reply(recipient_id, 'Who will win?', team1, team2)
 
 
 
@@ -151,7 +164,7 @@ def get_message(msg, has_payload):
 
     else:
         if has_payload:
-            return 'delet this', 'silence'
+            return 'delet this','silence'
         else:
             sample_responses = ["You are stunning!", "We're proud of you.", "Keep on being you!", "We're greatful to know you :)"]
                 # return selected item to the user
