@@ -75,7 +75,8 @@ def receive_message():
                     elif type_=='silence':
                         print('REMAIN SILENT!')
                         quickreply_payload = message['message']['quick_reply']['payload']
-                        send_message(recipient_id, quickreply_payload)
+                        if quickreply_payload == 'Pick who wins':
+                            send_quick_reply(recipient_id, 'Who will win?', curr_payload.split(' @ ')[0], curr_payload.split(' @ ')[1])
 
 
                     # The default
@@ -96,15 +97,15 @@ def receive_message():
 
                     send_quick_reply(recipient_id,'What type of betting?','Pick who wins','Over Under')
 
-            elif message.get('quick_reply'):
-                send_message(recipient_id,'in_quick-reply')
-                if ' @ ' in curr_payload:
-                    send_message(recipient_id,'@')
-                    team1 = curr_payload.split(' @ ')[0]
-                    team2 = curr_payload.split(' @ ')[1]
+            # elif message.get('quick_reply'):
+            #     send_message(recipient_id,'in_quick-reply')
+            #     if ' @ ' in curr_payload:
+            #         send_message(recipient_id,'@')
+            #         team1 = curr_payload.split(' @ ')[0]
+            #         team2 = curr_payload.split(' @ ')[1]
 
-                    if quickreply_payload == 'Pick who wins':
-                        send_quick_reply(recipient_id, 'Who will win?', team1, team2)
+            #         if quickreply_payload == 'Pick who wins':
+            #             send_quick_reply(recipient_id, 'Who will win?', team1, team2)
 
 
 
