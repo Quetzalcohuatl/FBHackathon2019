@@ -74,7 +74,7 @@ def receive_message():
                     # Remain silent but capture the payload
                     elif type_=='silence':
                         print('REMAIN SILENT!')
-                        quickreply_payload = message['quick_reply']['payload']
+                        quickreply_payload = message['message']['quick_reply']['payload']
                         send_message(recipient_id, quickreply_payload)
 
 
