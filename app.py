@@ -7,10 +7,11 @@ import json # For reading json from api
 from dateutil import parser # For parsing date
 
 from enum import Enum
+import os
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAAfontqk504BALpGOnCq26CNqO7lrC4qVtAZBN5ei9Hc4zyoKpXmNttjvLcXqoMMOJjcgmdQJKIFN02SZA47JosUmUZB8UMIlQGmEmVS7p5XyvS0ipiAunnU38Lj81kE6ZCw5elMxK4t1MTHY6TilzstHhJU5mtxMHnv1paG8WvW7Tw72pLOYEjCKoHDOjAZD'
-VERIFY_TOKEN = 'FACEBOOK_VERIFY_TOKEN_CHICAGO_2019'
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 
 bot = Bot(ACCESS_TOKEN)
 
