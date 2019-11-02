@@ -34,7 +34,7 @@ def send_recipient(self, recipient_id, payload, notification_type=NotificationTy
 Bot.send_quick_reply = send_quick_reply
 Bot.send_recipient = send_recipient
 
-curr_payload=''
+#curr_payload=''
 quickreply_payload = ''
 
 #We will receive messages that Facebook sends our bot at this endpoint 
@@ -75,6 +75,7 @@ def receive_message():
                     elif type_=='silence':
                         print('REMAIN SILENT!')
                         quickreply_payload = message['message']['quick_reply']['payload']
+                        print(curr_payload)
                         #send_message(recipient_id, curr_payload)
                         print(quickreply_payload)
                         send_message(recipient_id, quickreply_payload)
@@ -96,6 +97,7 @@ def receive_message():
                     recipient_id = messaging[0]['sender']['id']
                     send_message(recipient_id, message['postback']['payload'])
                     curr_payload = message['postback']['payload']
+                    print(curr_payload)
 
 
                     send_quick_reply(recipient_id,'What type of betting?','Pick who wins','Over Under')
