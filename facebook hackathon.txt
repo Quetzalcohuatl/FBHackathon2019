@@ -1,0 +1,77 @@
+gaming and entertainment (lets have some fun)
+productivity and utility (make applications more efficient)
+social good (impact on the lives of people)
+
+30% idea
+50% implementation
+20% uhh
+
+Facebook Developer Circles Chicago (Facebook DevC - from Sanju)
+You learn about Facebook tools and work with amazing people - not just on the FB team, but also the talent individual members bring
+
+Chicago Connectory (by Bosch and 1871)
+
+------
+
+eg an app that you can take a picture of something bad and send thru Facebook messenger, that will respond like: Where is this?
+How can ithrow a block party for my group?
+
+----------------
+
+Facebook Messenger in Hackathon (by Riandy; Partner Engineer)
+How to build experiences on Messenger?
+FB wants developers to build something on top of Messenger
+
+Why Messenger?
+-> Persistent Context
+
+What can you do with messenger?
+eg use FB Messenger to create a Fundraiser
+use FB messenger to create and host events
+->Automation
+->Customer service
+->Lead generation
+
+Messenger is just like Skyrim choose your own text adventure
+
+Eg booking appointments, checking in to flights, etc.
+
+How to get started?
+-> You need a FB page
+-> You need a FB developer app
+-> You need a backend server (Heroku, AWS, etc) [can use backend languages]
+
+What do you need? - just the Send and Receive API!
+Page Access Token with pages_messaging permission(For Hackathon, keep app in development mode.)
+Send API (Send Messages to users)
+Webhooks (Used to receive callbacks whenever user replies)
+
+Messenger Postman Collection lists out all the various Messenger APIs
+
+Useful Developer Tips:
+-> Make it conversational
+-> Leverage emojis/reactions/thumbs up
+-> Short questions
+-> Leverage messenger templates/building blocks
+-> Make the user engage
+
+Rules:
+you can ONLY send a message 24hours after user replies
+Dont be spammy
+
+Quick Replies are a series of buttons u can reply to minimize the amount of typing for a user
+e.g. Quick Reply the contact info (email, name)
+
+Profile API: can recognize your name, language, gender, etc.
+e.g. you get their timezone, you dont want to send them a message at 3 AM
+
+#################
+#################
+# IDEA # # # # # #
+competiive groups submitting through messenger
+(for example, submitting witty jokes that are voted to the best joke of the day)
+(for example, submitting company logos that are voted to the best)
+
+Then additionally you should be able use the bot to vote for other things (eg swipe right/left if you like it, or show 2 different things and ask which you like better)
+
+Can award medals/prizes based on voting, and based on how many times someone has won/how they performed on the leaderboard
